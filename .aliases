@@ -1,1 +1,44 @@
-/home/jonas/.aliases
+# vim: filetype=sh
+
+## Development
+alias composer="vesselOrPasstru composer"
+alias npm="vesselOrPassthru npm"
+alias la5="vesselOrPassthru art"
+alias art="php artisan"
+
+alias pt="./vendor/bin/phpunit"
+
+function vesselOrPasstru
+{
+	if [ -f ./vessel ]; then
+		./vessel $1 ${@:2}
+	else
+		$@
+	fi
+}
+
+function searchAndOpen
+{
+	fzf | xargs -r -I % xdg-open %;
+}
+alias so="searchAndOpen"
+
+function searchAndEdit
+{
+	fzf | xargs -r -I % $EDITOR %;
+}
+alias se="searchAndEdit"
+
+## Application overrides
+alias calcurse="calcurse -D ~/.config/calcurse"
+### Allow progamatically controlling mpv through launching with a IPC socket
+alias mpv="mpv --input-ipc-server=/tmp/mpvsoc$(date +%s)"
+
+
+## Navigation
+source ~/.config/shortcutrc
+
+## Convenience
+alias e="$EDITOR"
+alias g="git"
+
